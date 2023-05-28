@@ -1,0 +1,118 @@
+\usepackage{tikz}
+\usepackage{xargs}
+
+\usetikzlibrary{cd}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.markings}
+
+\newenvironmentx{stringd}[2][1=]{
+  \begin{tikzcd}[arrow style=math font,
+                 execute at end picture={#2},
+                 #1]
+}{
+  \end{tikzcd}
+}
+
+\newcommand{\cname}[1]{|[alias=#1]|\circ}
+
+\tikzset{
+  wa/.tip = {Glyph[glyph math command=circ, glyph length=1.01ex]},
+  no/.tip = {Glyph[glyph math command=circ, glyph length=0ex, glyph shorten=0.4ex]},
+  wano/.style = {wa-no,
+                 decoration={markings, mark=at position -0.4ex with {\arrow{>}}},
+                 postaction=decorate},
+  nowa/.style = {no-wa,
+                 decoration={markings, mark=at position -1.01ex with {\arrow{>}}},
+                 postaction=decorate},
+  wawa/.style = {wa-wa,
+                 decoration={markings, mark=at position -1.01ex with {\arrow{>}}},
+                 postaction=decorate},
+  nono/.style = {no-no,
+                 decoration={markings, mark=at position -0.4ex with {\arrow{>}}},
+                 postaction=decorate},
+}
+
+\newcommandx{\iwire}[3][1=]{\arrow[wano, end anchor={mid}, #1]{#2}{#3}}
+\newcommandx{\owire}[3][1=]{\arrow[nowa, start anchor={mid}, #1]{#2}{#3}}
+\newcommandx{\iowire}[3][1=]{\arrow[wawa, #1]{#2}{#3}}
+\newcommandx{\wire}[3][1=]{\arrow[nono, start anchor={mid}, end anchor={mid}, #1]{#2}{#3}}
+
+\newcommandx{\iunit}[3][1=]{\iwire[bend left=90, #1]{#2}{#3}}
+\newcommandx{\ounit}[3][1=]{\owire[bend left=90, #1]{#2}{#3}}
+\newcommandx{\iounit}[3][1=]{\iowire[bend left=90, #1]{#2}{#3}}
+\newcommandx{\unit}[3][1=]{\wire[bend left=90, #1]{#2}{#3}}
+
+\newcommandx{\icounit}[3][1=]{\iwire[bend right=90, #1]{#2}{#3}}
+\newcommandx{\ocounit}[3][1=]{\owire[bend right=90, #1]{#2}{#3}}
+\newcommandx{\iocounit}[3][1=]{\iowire[bend right=90, #1]{#2}{#3}}
+\newcommandx{\counit}[3][1=]{\wire[bend right=90, #1]{#2}{#3}}
+
+\newcommandx{\overiwire}[3][1=]{
+  \draw[white, line width=5pt]
+    (\tikzcdmatrixname-#2) to (\tikzcdmatrixname-#3);
+  \draw[wano, #1]
+    (\tikzcdmatrixname-#2) to (\tikzcdmatrixname-#3.mid);
+}
+\newcommandx{\noveriwire}[3][1=]{
+  \draw[white, line width=5pt]
+    (#2) to (#3);
+  \draw[wano, #1]
+    (#2) to (#3.mid);
+}
+
+\newcommandx{\overowire}[3][1=]{
+  \draw[/tikz/commutative diagrams/.cd, white, line width=5pt]
+    (\tikzcdmatrixname-#2) to (\tikzcdmatrixname-#3);
+  \draw[/tikz/commutative diagrams/.cd, nowa, #1]
+    (\tikzcdmatrixname-#2.mid) to (\tikzcdmatrixname-#3);
+}
+\newcommandx{\noverowire}[3][1=]{
+  \draw[/tikz/commutative diagrams/.cd, white, line width=5pt]
+    (#2) to (#3);
+  \draw[/tikz/commutative diagrams/.cd, nowa, #1]
+    (#2.mid) to (#3);
+}
+
+\newcommandx{\overiowire}[3][1=]{
+  \draw[/tikz/commutative diagrams/.cd, white, line width=5pt]
+    (\tikzcdmatrixname-#2) to (\tikzcdmatrixname-#3);
+  \draw[/tikz/commutative diagrams/.cd, wawa, #1]
+    (\tikzcdmatrixname-#2) to (\tikzcdmatrixname-#3);
+}
+\newcommandx{\noveriowire}[3][1=]{
+  \draw[/tikz/commutative diagrams/.cd, white, line width=5pt]
+    (#2) to (#3);
+  \draw[/tikz/commutative diagrams/.cd, wawa, #1]
+    (#2) to (#3);
+}
+
+\newcommandx{\overwire}[3][1=]{
+  \draw[/tikz/commutative diagrams/.cd, white, line width=5pt]
+    (\tikzcdmatrixname-#2) to (\tikzcdmatrixname-#3);
+  \draw[/tikz/commutative diagrams/.cd, nono, #1]
+    (\tikzcdmatrixname-#2.mid) to (\tikzcdmatrixname-#3.mid);
+}
+\newcommandx{\noverwire}[3][1=]{
+  \draw[/tikz/commutative diagrams/.cd, white, line width=5pt]
+    (#2) to (#3);
+  \draw[/tikz/commutative diagrams/.cd, nono, #1]
+    (#2.mid) to (#3.mid);
+}
+
+\newcommandx{\braid}[4]{
+  \draw[/tikz/commutative diagrams/.cd, nono, out=0, in=180]
+    (\tikzcdmatrixname-#1.mid) to (\tikzcdmatrixname-#3.mid);
+  \draw[/tikz/commutative diagrams/.cd, white, line width=5pt, out=0, in=180]
+    (\tikzcdmatrixname-#2) to (\tikzcdmatrixname-#4);
+  \draw[/tikz/commutative diagrams/.cd, nono, out=0, in=180]
+    (\tikzcdmatrixname-#2.mid) to (\tikzcdmatrixname-#4.mid);
+}
+\newcommandx{\nbraid}[4]{
+  \draw[/tikz/commutative diagrams/.cd, nono, out=0, in=180]
+    (#1.mid) to (#3.mid);
+  \draw[/tikz/commutative diagrams/.cd, white, line width=5pt, out=0, in=180]
+    (#2) to (#4);
+  \draw[/tikz/commutative diagrams/.cd, nono, out=0, in=180]
+    (#2.mid) to (#4.mid);
+}
+

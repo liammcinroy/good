@@ -1,0 +1,47 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage{common}
+\usepackage[% showframe,
+            margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+  \hypersetup{colorlinks=false,
+              citecolor=black,
+              urlcolor=black}
+
+% \usepackage{setspace}
+\setcounter{tocdepth}{2}
+
+\usepackage[backend=bibtex,style=alphabetic]{biblatex}
+\bibliography{}
+
+\DeclareRobustCommand{\subtitle}[1]{\\#1}
+\title{Maps on the Circle\subtitle{Math 118R\\Final Project}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\renewcommand{\subtitle}[1]{}
+
+\vspace*{-0.25in}
+\centerline{William McInroy}
+\centerline{\href{mailto:}
+                 {{\tt }}}
+\vspace*{-0.2in}
+
+\begin{abstract}
+\end{abstract}
+\vspace*{-0.75em}
+
+\tableofcontents
+\vspace*{-0.5in}
+
+% ...
+
+% biblio
+\renewcommand*{\bibfont}{\footnotesize}
+\printbibliography
+
+\end{document}

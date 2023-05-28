@@ -1,0 +1,64 @@
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{etoolbox}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{setspace}
+
+\newcommand{\nc}{\newcommand}
+\nc{\mr}[1]{\mathrm{#1}}
+\nc{\on}[1]{\operatorname{#1}}
+\nc{\mf}[1]{{\mathfrak{#1}}}
+\nc{\mc}[1]{{\mathcal{#1}}}
+\nc{\ms}[1]{{\mathscr{#1}}}
+\nc{\op}{\mr{op}}
+\nc{\TODO}{{\color{red} TODO}}
+
+\nc{\hooktwoheadrightarrow}{%
+  \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow
+}
+
+\nc{\BR}{\mathbb R}
+\nc{\BE}{\mathbb E}
+\nc{\BC}{\mathbb C}
+\nc{\BZ}{\mathbb Z}
+\nc{\BP}{\mathbb P}
+
+\numberwithin{equation}{subsubsection}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[subsubsection]
+\BeforeBeginEnvironment{theorem}{}
+\AfterEndEnvironment{theorem}{\noindent \textbf{End of Theorem \thetheorem}}
+\newtheorem{lemma}[theorem]{Lemma}
+\BeforeBeginEnvironment{lemma}{}
+\AfterEndEnvironment{lemma}{\noindent \textbf{End of Lemma \thelemma}}
+\newtheorem{proposition}[theorem]{Proposition}
+\BeforeBeginEnvironment{proposition}{}
+\AfterEndEnvironment{proposition}{\noindent \textbf{End of Proposition \theproposition}}
+\newtheorem{corollary}{Corollary}[subsubsection]
+\BeforeBeginEnvironment{corollary}{}
+\AfterEndEnvironment{corollary}{\noindent \textbf{End of Corollary \thecorollary}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[subsubsection]
+\BeforeBeginEnvironment{definition}{}
+\AfterEndEnvironment{definition}{\noindent \textbf{End of Definition \thedefinition}}
+\newtheorem{conjecture}{Conjecture}[subsubsection]
+\BeforeBeginEnvironment{conjecture}{}
+\AfterEndEnvironment{conjecture}{\noindent \textbf{End of Conjecture \theconjecture}}
+\newtheorem{example}{Example}[subsubsection]
+\BeforeBeginEnvironment{example}{}
+\AfterEndEnvironment{example}{\noindent \textbf{End of Example \theexample}}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+\BeforeBeginEnvironment{equation}{\begin{singlespace}}
+\AfterEndEnvironment{equation}{\end{singlespace}\noindent\ignorespaces}

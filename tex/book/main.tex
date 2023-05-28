@@ -1,0 +1,101 @@
+\documentclass[twoside,
+               % 12pt,
+               % 10pt,
+               11pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{common}
+\usepackage{standalone}
+
+\usepackage[backend=bibtex,style=alphabetic]{biblatex}
+
+\DefineBibliographyStrings{english}{%
+  bibliography = {References},
+}
+
+% this is a variadic bibliography input...
+\bibliography{bib.bib}
+
+\title{}
+\author{}
+
+%% indices load
+% default
+\makeindex[intoc]
+\chheading
+
+\begin{document}
+
+% set page numbers in roman first
+\pagenumbering{roman}
+
+%% Title page
+\begin{titlepage}
+  \vspace{5cm}
+  \begin{center}
+    \begin{tabular}{lcr}
+      % only if geometry margin adj
+      \vspace{5cm} \\
+      \multicolumn{3}{c}{{\Large }} \\ \\
+      \multicolumn{3}{c}{{\large }}
+        \\ \vspace{0.25cm} \\ \multicolumn{3}{c}{\titlerule[2pt]} \\ \\
+      \multicolumn{3}{c}{{\LARGE\bfseries
+                          }} \\ \\
+      % \multicolumn{3}{c}{{\LARGE\bfseries}} \\ \\
+      \multicolumn{3}{c}{\titlerule[2pt]} \vspace{0.25cm} \\
+      \\ \vspace{10cm} \\
+    \end{tabular} \\
+    \vspace{0.25cm}
+  \end{center}
+\end{titlepage}
+
+%% TODO: notation, tables, figures?
+\clearpage % end title page
+\begingroup
+  \pagestyle{empty}
+  \null
+  \newpage
+\endgroup
+
+%% table of contents
+{\scriptsize
+\tableofcontents
+}
+% to get page numbering in roman.
+\newpage
+\unchheading
+\clearpage
+\begingroup
+  \pagestyle{empty}
+  \null
+  \newpage
+\endgroup
+
+% \renewcommand{\chheading}{}
+% \renewcommand{\unchheading}{}
+
+%% actual content
+% set page numbers to not be offset.
+\pagenumbering{arabic}
+
+%% example chapter, to test \input
+% \renewcommand{\thechapter}{Ex}
+% \chapter{}
+% \input{generic-chapter/ex-ch}
+
+% \input{ack}
+
+%% Bibliography
+\renewcommand*{\bibfont}{\footnotesize}
+\begingroup
+\raggedright
+% \printbibliography[heading=bibintoc]
+\endgroup
+
+%% Appendix
+% \appendix
+
+%% Indices
+% \printindex
+
+\end{document}

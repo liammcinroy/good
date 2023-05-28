@@ -1,0 +1,283 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{dictcite}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{\textwidth}
+\usepackage{etoolbox}
+\usepackage{filecontents}
+\usepackage{xcolor}
+  % dark mode (!)
+  % \pagecolor[rgb]{0.15, 0.15, 0.15}
+  % \color[rgb]{0.75, 0.75, 0.75}
+\usepackage{ifthen}
+\usepackage{imakeidx}
+% this leads to weird fonts...
+% \usepackage{mathpazo}
+\usepackage{mathrsfs}
+\usepackage{mdframed}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{nicematrix}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{subcaption}
+\usepackage{stackengine}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{titlesec}
+\usepackage{upgreek}
+\usepackage{url}
+
+% font
+\usepackage{unicode-math}
+% \usepackage{mathptmx}
+% \usepackage{newpxtext}
+\usepackage{libertine}
+% \usepackage{gfsneohellenic}
+
+% do this after font, for some broken reason
+\usepackage{hyperref}
+ \hypersetup{colorlinks=true,
+             citecolor=black,
+             linkcolor=black,
+             urlcolor=black,
+             linkbordercolor={1 1 1}}
+
+%% path
+\newcommand{\mainpath}{../wip}
+
+%% math commands
+
+\newcommand{\nc}{\newcommand}
+\nc{\mr}[1]{\mathrm{#1}}
+\nc{\prel}[1]{{\ (\on{rel} {#1})}}
+\nc{\on}[1]{\operatorname{#1}}
+\nc{\onl}[1]{\operatornamewithlimits{#1}}
+\nc{\msf}[1]{\mathsf{#1}}
+\nc{\mf}[1]{{\mathfrak{#1}}}
+\nc{\mc}[1]{{\mathcal{#1}}}
+\nc{\ms}[1]{{\mathscr{#1}}}
+\nc{\mt}[1]{{\mathit{#1}}}
+\nc{\id}{\on{id}}
+\nc{\Id}{\on{Id}}
+
+\nc{\pt}{*}
+
+\nc{\hooktwoheadrightarrow}{%
+  \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow
+}
+
+\nc{\BR}{\mathbb R}
+\nc{\BE}{\mathbb E}
+\nc{\BC}{\mathbb C}
+\nc{\BZ}{\mathbb Z}
+\nc{\BP}{\mathbb P}
+\nc{\simto}{\stackrel{\sim}{\to}}
+
+\nc{\showtodos}{}
+\nc{\TODO}{\ifdefined\showtodos {\color{red} TODO} \fi}
+\nc{\todo}[1]{\ifdefined\showtodos\marginpar {\color{red} TODO: #1} \fi}
+
+% formatting of equation numbers...
+\numberwithin{equation}{subsubsection}
+
+% \nc{\printendofthm}{}
+% \nc{\thmmdframed}{}
+
+% \theoremstyle{plain}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[subsubsection]
+\BeforeBeginEnvironment{theorem}
+                       {\ifdefined\thmmdframed \begin{mdframed} \fi}
+\AfterEndEnvironment{theorem}
+                    {\ifdefined\printendofthm
+                     \noindent \textbf{End of Theorem \thetheorem}
+                     \fi
+                     \ifdefined\thmmdframed
+                     \end{mdframed}
+                     \fi}
+\newtheorem{lemma}[theorem]{Lemma}
+\BeforeBeginEnvironment{lemma}
+                       {\ifdefined\thmmdframed \begin{mdframed} \fi}
+\AfterEndEnvironment{lemma}
+                    {\ifdefined\printendofthm
+                     \noindent \textbf{End of Lemma \thelemma}
+                     \fi
+                     \ifdefined\thmmdframed
+                     \end{mdframed}
+                     \fi}
+\newtheorem{proposition}[theorem]{Proposition}
+\BeforeBeginEnvironment{proposition}
+                       {\ifdefined\thmmdframed \begin{mdframed} \fi}
+\AfterEndEnvironment{proposition}
+                    {\ifdefined\printendofthm
+                     \noindent \textbf{End of Proposition \theproposition}
+                     \fi
+                     \ifdefined\thmmdframed
+                     \end{mdframed}
+                     \fi}
+\newtheorem{corollary}[theorem]{Corollary}
+\BeforeBeginEnvironment{corollary}
+                       {\ifdefined\thmmdframed \begin{mdframed} \fi}
+\AfterEndEnvironment{corollary}
+                    {\ifdefined\printendofthm
+                     \noindent \textbf{End of Corollary \thecorollary}
+                     \fi
+                     \ifdefined\thmmdframed
+                     \end{mdframed}
+                     \fi}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\BeforeBeginEnvironment{definition}
+                       {\ifdefined\thmmdframed \begin{mdframed} \fi}
+\AfterEndEnvironment{definition}
+                    {\ifdefined\printendofthm
+                     \noindent \textbf{End of Definition \thedefinition}
+                     \fi
+                     \ifdefined\thmmdframed
+                     \end{mdframed}
+                     \fi}
+\newtheorem{qdefinition}[theorem]{Pseudodefinition}
+\BeforeBeginEnvironment{qdefinition}
+                       {\ifdefined\thmmdframed \begin{mdframed} \fi}
+\AfterEndEnvironment{qdefinition}
+                    {\ifdefined\printendofthm
+                     \noindent \textbf{End of Pseudodefinition \thedefinition}
+                     \fi
+                     \ifdefined\thmmdframed
+                     \end{mdframed}
+                     \fi}
+\newtheorem{claim}[theorem]{Claim}
+\BeforeBeginEnvironment{claim}
+                       {\ifdefined\thmmdframed \begin{mdframed} \fi}
+\AfterEndEnvironment{claim}
+                    {\ifdefined\printendofthm
+                     \noindent \textbf{End of claim \thedefinition}
+                     \fi
+                     \ifdefined\thmmdframed
+                     \end{mdframed}
+                     \fi}
+\newtheorem{example}[theorem]{Example}
+\BeforeBeginEnvironment{example}
+                       {\ifdefined\thmmdframed \begin{mdframed} \fi}
+\AfterEndEnvironment{example}
+                    {\ifdefined\printendofthm
+                     \noindent \textbf{End of Example \theexample}
+                     \fi
+                     \ifdefined\thmmdframed
+                     \end{mdframed}
+                     \fi}
+
+\newtheorem{remark}[theorem]{Remark}
+\BeforeBeginEnvironment{remark}
+                       {\ifdefined\thmmdframed \begin{mdframed} \fi}
+\AfterEndEnvironment{remark}
+                    {\ifdefined\printendofthm
+                     \noindent \textbf{End of Example \theremark}
+                     \fi
+                     \ifdefined\thmmdframed
+                     \end{mdframed}
+                     \fi}
+\theoremstyle{remark}
+\newtheorem*{note}{Note}
+
+\BeforeBeginEnvironment{equation}{\begin{singlespace}}
+\AfterEndEnvironment{equation}{\end{singlespace}\noindent\ignorespaces}
+
+\nc{\idxnamedef}[4]
+   {\begin{definition}[#1]
+    \label{#2}
+    \defidx{#3 \\ \quad Definition \ref{#2}}
+      #4
+    \end{definition}
+   }
+\nc{\idxnameqdef}[4]
+   {\begin{qdefinition}[#1]
+    \label{#2}
+    \defidx{#3 \\ \quad Pseudodefinition \ref{#2}}
+    % \defidx{\ref{#2}: #3}
+      #4
+    \end{qdefinition}
+   }
+% \usepackage{string}
+
+% \doublespacing
+
+% adjust headers of chapters
+\usepackage[% showframe,
+            headheight=0pt,
+            headsep=0pt]{geometry}
+\nc{\chheading}{
+  \addtolength{\topmargin}{-90pt}
+  \addtolength{\textheight}{180pt}
+  % \newgeometry{headheight=0pt,headsep=0pt}
+}
+\nc{\unchheading}{
+  \newgeometry{}
+}
+% \addtolength{\topmargin}{-90pt}
+% \addtolength{\textheight}{150pt}
+
+% \usepackage[Sonny]{fncychap}
+
+% input subsections in ToC; paragraphs in section numbering
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{4}
+
+\usepackage{tocloft}
+% \setlength{\cftchapnumwidth}{3em}
+% \setlength{\cftsecnumwidth}{5em}
+% \setlength{\cftsubsecnumwidth}{5em}
+% \setlength{\cftsubsubsecnumwidth}{6em}
+
+% title, ToC
+\titleformat{\chapter}[display]
+{\normalfont\bfseries\filcenter}
+{\LARGE\thechapter}
+{1ex}
+{\titlerule[2pt]
+\vspace{2ex}%
+\LARGE}
+[\vspace{1ex}%
+{\titlerule[2pt]}]
+
+% page numbers to match pdf (electronic)
+\makeatletter
+\def\pagenumbering#1{\gdef\thepage{\csname @#1\endcsname \c@page}}
+\makeatother
+
+% no new page on ch
+% \makeatletter
+% \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+% \makeatother
+
+%% macros for writing
+
+% new column types for math mode
+\newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{L}{>{$}l<{$}}
+\newcolumntype{R}{>{$}r<{$}}
+
+% Textual labels
+\MakeRobust{\ref}% avoid expanding it when in a textual label
+\makeatletter
+\newcommand{\labeltext}[2]{%
+  \@bsphack
+  \csname phantomsection\endcsname % in case hyperref is used
+  \def\@currentlabel{#1}{\label{#2}}%
+  \@esphack
+}
+\makeatother
+
+% indexes
+\nc{\idx}[1]{\index{#1}}
+
+%% some commonly used names (chs, secs, etc)
+

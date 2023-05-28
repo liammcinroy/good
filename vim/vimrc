@@ -1,0 +1,20 @@
+set autoindent
+set expandtab
+set mouse=a
+set ruler
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
+
+set term=xterm-256color
+
+filetype plugin on
+syntax on
+
+set colorcolumn=80
+set number
+
+call plug#begin()
+Plug 'rhysd/vim-clang-format'
+call plug#end()
+
