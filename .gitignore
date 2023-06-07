@@ -302,3 +302,8 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+# conan files
+*conan.lock
+*conan*info*
+*graph_info.json
