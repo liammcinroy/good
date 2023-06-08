@@ -31,6 +31,17 @@ using make_offset_index_sequence =
 
 namespace sequences {
 
+template <size_t n>
+struct string {
+  static constexpr size_t size() noexcept { return n; }
+
+  constexpr string(const char (&val)[n]) { std::copy_n(val, n, _value); }
+
+  char _value[n];
+
+  auto operator<=>(const string&) const = default;
+};
+
 namespace details {
 
 //// Basic usual index variadic
@@ -79,6 +90,8 @@ template <size_t... idxes>
 static constexpr bool strictly_ordered_v = strictly_ordered<idxes...>::value;
 }  // namespace details
 
+// MARK: - `TypeSequence`
+
 template <typename... Ts>
 struct TypeSequence {};
 
@@ -86,7 +99,7 @@ template <>
 struct TypeSequence<> {
   using This = TypeSequence<>;
 
-  static constexpr size_t length = 0;
+  static constexpr size_t size() noexcept { return 0; }
 
   template <typename... Ts2>
   using append = TypeSequence<Ts2...>;
@@ -114,9 +127,9 @@ template <typename T0, typename... Ts>
 struct TypeSequence<T0, Ts...> {
   using This = TypeSequence<T0, Ts...>;
 
-  static constexpr size_t length = sizeof...(Ts) + 1;
+  static constexpr size_t size() noexcept { return sizeof...(Ts) + 1; }
 
-  template <size_t i>  // requires(i < length)  // fails in partial specialize
+  template <size_t i>  // requires(i < size())  // fails in partial specialize
   struct get {
     using type = typename TypeSequence<Ts...>::template get<i - 1>::type;
   };
@@ -145,7 +158,7 @@ struct TypeSequence<T0, Ts...> {
     // requires(::sequences::details::strictly_ordered_v<idxes...>&&
     // ::sequences::
     //              details::get::at_v<sizeof...(idxes) - 1, idxes...> <
-    //          length)
+    //          size())
     struct select_impl {
       using type = Seq;
     };
@@ -168,14 +181,13 @@ struct TypeSequence<T0, Ts...> {
   using select = typename details::template select_impl<
       TypeSequence<>, std::index_sequence<idxes...>>::type;
 
-  template <size_t i, typename T>  // requires(i < length)  // fails partial
+  template <size_t i, typename T>  // requires(i < size())  // fails partial
   struct set {
     using type = typename This::details::template select_impl<
-        TypeSequence<>,
-        std::make_index_sequence<i>>::type::template append<T>::
+        TypeSequence<>, std::make_index_sequence<i>>::type::template append<T>::
         template concatenate<typename This::details::template select_impl<
             TypeSequence<>, std::make_offset_index_sequence<
-                                i + 1, length - i - 1>>::type>::type;
+                                i + 1, size() - i - 1>>::type>::type;
   };
 
   template <typename T>
@@ -209,6 +221,150 @@ static_assert(
     std::same_as<
         typename TypeSequence<bool, char, int>::template set<1, void>::type,
         TypeSequence<bool, void, int>>);
+
+}  // namespace tests
+
+// MARK: - Improved `index_sequence`
+
+template <size_t... vals>
+struct indices : std::index_sequence<vals...> {};
+
+template <>
+struct indices<> : std::index_sequence<> {
+  using This = indices<>;
+
+  static constexpr size_t size() noexcept { return 0; }
+
+  /* static constexpr size_t string_size() noexcept { return 1; }
+
+  static constexpr string<string_size()> to_string() noexcept {
+    return string<1>("");
+  }; */
+
+  template <size_t... vals2>
+  using append = indices<vals2...>;
+
+  template <size_t... vals2>
+  using prepend = indices<vals2...>;
+
+  template <typename>
+  struct concatenate {};
+
+  template <size_t... vals2>
+  struct concatenate<indices<vals2...>> {
+    using type = append<vals2...>;
+  };
+
+  struct details {
+    template <typename Seq, typename>
+    struct select_impl {
+      using type = Seq;
+    };
+  };
+};
+
+template <size_t v0, size_t... vals>
+struct indices<v0, vals...> : std::index_sequence<vals...> {
+  using This = indices<v0, vals...>;
+
+  static constexpr size_t size() noexcept { return sizeof...(vals) + 1; }
+
+  /* static constexpr size_t string_size() noexcept {
+    static constexpr size_t new_string_size =
+        std::string(std::to_string(v0) + (sizeof...(vals) == 0 ? "" : ", "))
+            .size();
+    return new_string_size + indices<vals...>::string_size();
+  }
+
+  static constexpr string<string_size()> to_string() noexcept { return 0; }; */
+
+  template <size_t i>
+  static constexpr size_t get() noexcept {
+    return indices<vals...>::template get<i - 1>();
+  }
+
+  template <>
+  static constexpr size_t get<0>() noexcept {
+    return v0;
+  }
+
+  template <size_t... vals2>
+  using append = indices<v0, vals..., vals2...>;
+
+  template <size_t... vals2>
+  using prepend = indices<vals2..., v0, vals...>;
+
+  template <typename>
+  struct concatenate {};
+
+  template <size_t... vals2>
+  struct concatenate<indices<vals2...>> {
+    using type = append<vals2...>;
+  };
+
+  struct details {
+    template <typename Seq, typename idxes>
+    // requires(::sequences::details::strictly_ordered_v<idxes...>&&
+    // ::sequences::
+    //              details::get::at_v<sizeof...(idxes) - 1, idxes...> <
+    //          size())
+    struct select_impl {
+      using type = Seq;
+    };
+
+    template <typename Seq, size_t i0, size_t... idxes>
+    struct select_impl<Seq, std::index_sequence<i0, idxes...>> {
+      using type = typename indices<vals...>::details::template select_impl<
+          Seq, std::index_sequence<i0 - 1, (idxes - 1)...>>::type;
+    };
+
+    template <typename Seq, size_t... idxes>
+    struct select_impl<Seq, std::index_sequence<0, idxes...>> {
+      using type = typename indices<vals...>::details::template select_impl<
+          typename Seq::template append<v0>,
+          std::index_sequence<(idxes - 1)...>>::type;
+    };
+  };
+
+  template <size_t... idxes>
+  using select = typename details::template select_impl<
+      indices<>, std::index_sequence<idxes...>>::type;
+
+  template <size_t i, size_t new_v>  // requires(i < size())  // fails partial
+  struct set {
+    using type = typename This::details::template select_impl<
+        indices<>, std::make_index_sequence<i>>::type::template append<new_v>::
+        template concatenate<typename This::details::template select_impl<
+            indices<>, std::make_offset_index_sequence<i + 1, size() - i - 1>>::
+                                 type>::type;
+  };
+
+  template <size_t new_v>
+  struct set<0, new_v> {
+    using type = indices<new_v, vals...>;
+  };
+};
+
+namespace tests {
+
+// append
+static_assert(
+    std::same_as<typename indices<1>::template append<2>, indices<1, 2>>);
+// prepend
+static_assert(
+    std::same_as<typename indices<2>::template prepend<1>, indices<1, 2>>);
+
+// select
+static_assert(std::same_as<typename indices<1, 2, 3>::template select<0, 2>,
+                           indices<1, 3>>);
+
+// set at 0
+static_assert(std::same_as<typename indices<1, 2, 3>::template set<0, 0>::type,
+                           indices<0, 2, 3>>);
+
+// set at 1
+static_assert(std::same_as<typename indices<1, 2, 3>::template set<1, 0>::type,
+                           indices<1, 0, 3>>);
 
 }  // namespace tests
 
