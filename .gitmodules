@@ -1,0 +1,3 @@
+[submodule "cpp/llvm-project"]
+	path = cpp/llvm-project
+	url = git@github.com:llvm/llvm-project
