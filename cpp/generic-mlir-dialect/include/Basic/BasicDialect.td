@@ -1,5 +1,5 @@
-#ifndef BASIC_DIALECT
-#define BASIC_DIALECT
+#ifndef BASIC_BASICDIALECT_TD
+#define BASIC_BASICDIALECT_TD
 
 include "mlir/IR/OpBase.td"
 
@@ -7,7 +7,7 @@ include "mlir/IR/OpBase.td"
 // operations to this particular dialect.
 def Basic_Dialect : Dialect {
   let name = "basic";
-  let summary = "A generic template for a MLIR dialect."
+  let summary = "A generic template for a MLIR dialect.";
   let description = [{
     A simple template project for custom MLIR dialects.
   }];
@@ -20,7 +20,7 @@ def Basic_Dialect : Dialect {
 }
 
 // Generic operation that will belong to this dialect.
-class Basic_Op<string mnemonic, list<Trait> traits = []> "
+class Basic_Op<string mnemonic, list<Trait> traits = []> :
     Op<Basic_Dialect, mnemonic, traits>;
 
 #endif

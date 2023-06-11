@@ -1,11 +1,8 @@
 # register the OPS with TableGen
 add_mlir_dialect(BasicOps basic)
 
-# generate documentation (optional)
-if (DEFINED ENABLE_GEN_DOCS)
-  add_mlir_doc(BasicDialect BasicDialect Basic/ -gen-dialect-doc)
-  add_mlir_doc(BasicOps BasicOps Basic/ -gen-dialect-doc)
-endif()
+add_mlir_doc(BasicDialect BasicDialect Basic/ -gen-dialect-doc)
+add_mlir_doc(BasicOps BasicOps Basic/ -gen-op-doc)
 
 # if there's transforms or passes, then add those here
 # TODO: check these?

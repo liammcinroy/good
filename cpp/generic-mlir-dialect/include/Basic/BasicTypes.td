@@ -1,5 +1,5 @@
-#ifndef BASIC_TYPES
-#define BASIC_TYPES
+#ifndef BASIC_BASICTYPES_TD
+#define BASIC_BASICTYPES_TD
 
 include "mlir/IR/AttrTypeBase.td"
 include "Basic/BasicDialect.td"
