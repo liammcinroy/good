@@ -13,6 +13,8 @@ def Basic_Dialect : Dialect {
   }];
   let cppNamespace = "::mlir::basic";
 
+  // if you want it to be extensible
+  // let isExtensible = 1;
   let useDefaultTypePrinterParser = 1;
   let extraClassDeclaration = [{
       void registerTypes();

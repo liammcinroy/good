@@ -11,12 +11,18 @@ to store all the things that I like.
 
 | Thing | Notes |
 |-------|-------|
-| [generic-conan](cpp/generic-conan) | Very basic `conan` build setup. |
-| [gitignore](git/gitignore) | A `gitignore` I use often, probs too general. |
-| [setup.py](py/setup.py) | Basic `setup.py` because they're all the same. |
+| [cpp/generic-conan](cpp/generic-conan) | Very basic `conan` build setup. |
+| [cpp/generic-mlir-dialect](cpp/generic-mlir-dialect) | Very basic MLIR custom dialect. |
+| [cpp/templates/sequences](cpp/templates/sequences) | Basic variadic `template<typename...>` manipulations. |
+| [git/gitignore](git/gitignore) | A `gitignore` I use often, probs too general. |
+| [python/estimators](python/estimators) | A bunch of `sklearn` estimators. |
+| [python/setup](python/setup) | Basic `setup.py` because they're all the same. |
+| [scala/generic-maven](scala/generic-maven) | Basic `mvn` setup for scala 2. |
+| [scala/generic-maven-plugin](scala/generic-maven-plugin) | Basic `mvn` setup with compiler plugins. |
 | [tex/apa](tex/apa) | An APA formatted `tex` file. Very useful with cite. |
 | [tex/book](tex/book) | The basic `tex` structure my senior thesis used. |
 | [tex/notes](tex/notes) | A `tex` format for short notes. |
 | [tex/string](tex/string) | A `tex` package for my weird string diagrams. |
+| [vim/vimrc](vim/vimrc) | The `.vimrc` I like to use often. |
 
 much more to come...

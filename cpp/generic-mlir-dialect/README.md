@@ -80,5 +80,5 @@ to/from MLIR?
 
 ### TODOs
 
-- Make it follow the suggested file structure from the
-[docs](https://mlir.llvm.org/docs/Tutorials/CreatingADialect/).
+- Play with dynamic dialects?
+[docs](https://mlir.llvm.org/docs/DefiningDialects/#defining-a-dynamic-dialect)
