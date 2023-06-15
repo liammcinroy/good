@@ -13,7 +13,7 @@ to store all the things that I like.
 |-------|-------|
 | [cpp/generic-conan](cpp/generic-conan) | Very basic `conan` build setup. |
 | [cpp/generic-mlir-dialect](cpp/generic-mlir-dialect) | Very basic MLIR custom dialect. |
-| [cpp/templates/sequences](cpp/templates/sequences) | Basic variadic `template<typename...>` manipulations. |
+| [cpp/templates-sequences](cpp/templates-sequences) | Basic variadic `template<typename...>` manipulations. |
 | [git/gitignore](git/gitignore) | A `gitignore` I use often, probs too general. |
 | [python/estimators](python/estimators) | A bunch of `sklearn` estimators. |
 | [python/setup](python/setup) | Basic `setup.py` because they're all the same. |
