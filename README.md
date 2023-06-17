@@ -24,5 +24,6 @@ to store all the things that I like.
 | [tex/notes](tex/notes) | A `tex` format for short notes. |
 | [tex/string](tex/string) | A `tex` package for my weird string diagrams. |
 | [vim/vimrc](vim/vimrc) | The `.vimrc` I like to use often. |
+| [web/react](web/react) | A basic `reactify` project with `gulp`. Really old though. |
 
 much more to come...
