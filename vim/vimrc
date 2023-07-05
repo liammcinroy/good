@@ -16,5 +16,10 @@ set number
 
 call plug#begin()
 Plug 'rhysd/vim-clang-format'
+
+Plug 'derekwyatt/vim-scala'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 
+" Configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
