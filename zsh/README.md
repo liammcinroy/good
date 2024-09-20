@@ -18,3 +18,12 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 ```
 
 (with the latter line put in `.zshrc`)
+
+finally, for the font, run
+
+```bash
+curl -kL https://raw.githubusercontent.com/cstrap/monaco-font/master/install-font-ubuntu.sh | bash
+```
+
+then in terminal go `settings -> profiles -> ubuntu -> font -> monaco`.
+
