@@ -17,7 +17,12 @@ brew install zsh-syntax-highlighting
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ```
 
-(with the latter line put in `.zshrc`)
+(with the latter line put in `.zshrc`). (if you want it in vscode, then also add
+
+```json
+    "terminal.integrated.defaultProfile.osx": "zsh"
+```
+to your user settings).
 
 finally, for the font, run
 
