@@ -21,3 +21,6 @@ coursier bootstrap \
 - Also in `~/.vim/plugged/coc.nvim` run `yarn install && yarn build`
 
 - Then in vim, just run `:CocInstall`, `:CocEnable`, and `:CocStart`!
+
+- For rust analyzer, then also run `:CocInstall coc-rust-analyzer`
+
