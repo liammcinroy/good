@@ -24,3 +24,7 @@ coursier bootstrap \
 
 - For rust analyzer, then also run `:CocInstall coc-rust-analyzer`
 
+- As annoying neovim related coc issues come up, then remove them by editing
+`~/.vim/plugged/coc.nvim/plugin/coc.vim` for the offending lines, e.g. dropping
+an `autocmd` for `coc#float#check_related`.
+
