@@ -22,10 +22,24 @@ coursier bootstrap \
 
 - Then in vim, just run `:CocInstall`, `:CocEnable`, and `:CocStart`!
 
+- For scala, `:CocInstall coc-metals`
+
+  - if this doesn't work, then it can be useful to add as a plug instead.
+
 - For rust analyzer, then also run `:CocInstall coc-rust-analyzer`.
 
 - For C++, then also run `:CocInstall coc-clangd`.
 
+- For ruff, then `:CocInstall @yaegassy/coc-ruff`
+
+  - if this doesn't work, then it can be useful to add as a plug instead.
+
 - If you get weird error messages, it's probably some combination of an old
 session with a bad recent plug update, or a bad combinations of plugs.
+
+  - or you `brew install node`, and you shouldn't, and should install from
+  http://nodejs.org instead.
+
+  - you may need to remove `node_modules` in wherever it's trying to install to
+  as well.
 

@@ -1,12 +1,18 @@
 set autoindent
 set expandtab
-set mouse=a
+set mouse=r
 set ruler
 set softtabstop=2
 set shiftwidth=2
 set tabstop=2
 
+set backspace=indent,eol,start
+
 set term=xterm-256color
+
+" For copying from visual mode
+vmap <C-c> "+yi
+vmap <C-x> "+cr
 
 filetype plugin on
 syntax on
@@ -15,14 +21,26 @@ set colorcolumn=80
 set number
 
 call plug#begin()
-Plug 'rhysd/vim-clang-format'
-
 Plug 'derekwyatt/vim-scala'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'preservim/nerdtree'
+Plug 'yaegassy/coc-ruff', {'do': 'yarn install --frozen-lockfile'}
+Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
+
+" Configuration for NERDTree
+
+" Cmd e to toggle
+nnoremap <C-e> :NERDTreeToggle<CR>
+" Open at startup, but not with cursor there
+autocmd VimEnter * NERDTree | wincmd p
+
 
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
+
+" Coc uses byte offsets, so need to set this so that it doesn't blow up.
+set encoding=utf-8
 
 " These default mappings should either go in your .vimrc or in a file that
 " you're going to source from your .vimrc. For example, you can copy this file
@@ -127,6 +145,8 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
+
+command! -nargs=0 FormatImports :call CocAction("runCommand", "ruff.executeOrganizeImports")
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
