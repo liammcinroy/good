@@ -21,12 +21,15 @@ set colorcolumn=80
 set number
 
 call plug#begin()
+Plug '07734willy/PyRepl'
+Plug 'preservim/nerdtree'
 Plug 'derekwyatt/vim-scala'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'preservim/nerdtree'
 Plug 'yaegassy/coc-ruff', {'do': 'yarn install --frozen-lockfile'}
 Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
+
+filetype plugin on
 
 " Configuration for NERDTree
 
