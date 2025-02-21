@@ -37,6 +37,8 @@ filetype plugin on
 nnoremap <C-e> :NERDTreeToggle<CR>
 " Open at startup, but not with cursor there
 autocmd VimEnter * NERDTree | wincmd p
+" Quit if it's the only buffer left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
 " Configuration for vim-scala
