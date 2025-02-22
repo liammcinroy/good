@@ -1,6 +1,6 @@
 set autoindent
 set expandtab
-set mouse=r
+set mouse=a
 set ruler
 set softtabstop=2
 set shiftwidth=2
@@ -13,6 +13,13 @@ set term=xterm-256color
 " For copying from visual mode
 vmap <C-c> "+yi
 vmap <C-x> "+cr
+
+" For cloning a buffer
+:command! Clone new | put =getbufline('#',1,'$') | 1d_
+" For running a command of an entire buffer
+" :command! -nargs=1 Run :%w !<args>
+" For running a command of the selected range (or the whole buffer, %)
+:command! -range=% -nargs=1 Run <line1>,<line2>:w !<args>
 
 filetype plugin on
 syntax on
@@ -40,6 +47,26 @@ autocmd VimEnter * NERDTree | wincmd p
 " Quit if it's the only buffer left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+
+" Configuration for PyRepl (modified from repo readme).
+" Note that localleader is typically `\`
+
+" Timeout in seconds for the execution. note that it'll hang vim during
+let g:pyrepl_timeout = 3
+
+" Add this statement if you intend to set the mappings yourself
+let g:pyrepl_mapkeys = 0
+
+" Mnemonic: "Evaluate [to] End" or "Evaluate Everything"
+command Py :PyReplEval
+
+" Given a range, PyReplEval will only evaluate code in that region
+" Mnemonic: "Evaluate Until [line]"
+command Pyu :0,PyReplEval
+
+" Mnemonic: "Clear"
+command Pyc :PyReplStrip output
+" Valid arguments to PyReplStrip are `all`, `output`, `input`, `error` (default: `output`)
 
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
