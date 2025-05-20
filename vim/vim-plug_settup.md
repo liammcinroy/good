@@ -7,12 +7,15 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ### useful plugs
 
+- `preservim/nerdtree`: tree View
+
+- `kien/ctrlp.vim`: Ctrl-p search files
+
 - `07734willy/PyRepl`: A way to quickly evaluate python scripts, and show
 output inline.
-
-- `preservim/nerdtree`: tree View
 
 - `derekwyatt/vim-scala`: the `:ScalaSortImports` command
 
 - `neoclide/coc.nvim`: CoC LSP. See `coc_setup.md` for more info.
+
 

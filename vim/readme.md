@@ -14,9 +14,15 @@
 - use `Ctrl-o` to return to previous position, `Ctrl-i` to go to the next (but
 these are all in the same buffer...).
 
-#### nerdtree and custom commands
+#### nerdtree, ctrlp, and custom commands
 
 - Ctrl-e: toggle NERDTree
+
+  - when selecting one, `t` to open in new tab
+
+- Ctrl-p: search files
+
+  - Ctrl-j / Ctrl-k to navigate list (or arrows)
 
 - visually select and `:Run <command>` will run that range as stdin to
   `<command>`, displaying it in a scratch (?) buffer.
