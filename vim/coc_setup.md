@@ -34,6 +34,10 @@ coursier bootstrap \
 
   - if this doesn't work, then it can be useful to add as a plug instead.
 
+- For mypy, then `:CocInstall @yaegassy/coc-mypy`
+
+  - if this doesn't work, then it can be useful to add as a plug instead.
+
 - For jedi lsp, then `:CocInstall coc-jedi`
 
 - If you get weird error messages, it's probably some combination of an old
