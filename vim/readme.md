@@ -11,6 +11,9 @@
 - visually select and `:terminal <command>` will run that range as stdin to
   `<command>`, displaying it in a new buffer.
 
+- use `Ctrl-o` to return to previous position, `Ctrl-i` to go to the next (but
+these are all in the same buffer...).
+
 #### nerdtree and custom commands
 
 - Ctrl-e: toggle NERDTree

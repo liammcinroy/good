@@ -28,12 +28,26 @@ set colorcolumn=80
 set number
 
 call plug#begin()
-Plug '07734willy/PyRepl'
 Plug 'preservim/nerdtree'
-Plug 'derekwyatt/vim-scala'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'yaegassy/coc-ruff', {'do': 'yarn install --frozen-lockfile'}
-Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+
+Plug '07734willy/PyRepl'
+
+" Optional, if `:CocInstall coc-jedi` is annoying
+" Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+
+" Optional, if `:CocInstall coc-ruff` is annoying
+" Plug 'yaegassy/coc-ruff', {'do': 'yarn install --frozen-lockfile'}
+
+" Optional, if `:CocInstall coc-metals` is annoying
+" Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+
+" Optional, if using scala
+" Plug 'derekwyatt/vim-scala'
+
+" Also make sure to run
+" `:CocInstall coc-clangd`
+" `:CocInstall coc-rust-analyzer`
 call plug#end()
 
 filetype plugin on

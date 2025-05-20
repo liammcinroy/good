@@ -34,6 +34,8 @@ coursier bootstrap \
 
   - if this doesn't work, then it can be useful to add as a plug instead.
 
+- For jedi lsp, then `:CocInstall coc-jedi`
+
 - If you get weird error messages, it's probably some combination of an old
 session with a bad recent plug update, or a bad combinations of plugs.
 
@@ -42,4 +44,6 @@ session with a bad recent plug update, or a bad combinations of plugs.
 
   - you may need to remove `node_modules` in wherever it's trying to install to
   as well.
+
+- Also vim 9+ is often required for these to work!
 
