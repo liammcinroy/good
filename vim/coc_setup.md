@@ -40,6 +40,12 @@ coursier bootstrap \
 
 - For jedi lsp, then `:CocInstall coc-jedi`
 
+- For prettier, then `:CocInstall coc-prettier`
+
+- For typescript server, then `:CocInstall coc-tsserver`
+
+### errors
+
 - If you get weird error messages, it's probably some combination of an old
 session with a bad recent plug update, or a bad combinations of plugs.
 
