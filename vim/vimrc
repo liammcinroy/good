@@ -30,6 +30,7 @@ set number
 call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'kien/ctrlp.vim'
+Plug 'dyng/ctrlsf.vim'
 
 Plug '07734willy/PyRepl'
 " Optional, if using scala
@@ -65,6 +66,9 @@ autocmd VimEnter * NERDTree | wincmd p
 " Quit if it's the only buffer left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Configuration for CtrlSF
+nnoremap <C-F>f <Plug>CtrlSFPrompt
+nnoremap <C-F>o :CtrlSFOpen<CR>
 
 " Configuration for PyRepl (modified from repo readme).
 " Note that localleader is typically `\`

@@ -4,7 +4,15 @@
 
 - `gq` to reflow comments and paragraphs and stuff
 
-- `gg` top of file, `G` bottom of file, `zf`, `vii`
+- `q<register>` to record, `q` to end, `@<register>` to apply (!)
+
+- `gg` top of file, `G` bottom of file
+
+- `g;` to go to previous edit, `g,` forward
+
+- `Ctrl-o` to jump back, `Ctrl-i` to jump forward
+
+- `zf` fold, `vii` select indent
 
 - Ctrl-d, Ctrl-u: page up/down
 

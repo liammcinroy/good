@@ -9,7 +9,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 - `preservim/nerdtree`: tree View
 
-- `kien/ctrlp.vim`: Ctrl-p search files
+- `kien/ctrlp.vim`: Ctrl-p search file names
+
+- 'dyng/ctrlsf.vim': Ctrl-f (f) to search files
 
 - `07734willy/PyRepl`: A way to quickly evaluate python scripts, and show
 output inline.
