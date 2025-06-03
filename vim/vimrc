@@ -31,6 +31,7 @@ call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'dyng/ctrlsf.vim'
+Plug 'zevv/buftabs'
 
 Plug '07734willy/PyRepl'
 " Optional, if using scala
@@ -69,6 +70,17 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Configuration for CtrlSF
 nnoremap <C-F>f <Plug>CtrlSFPrompt
 nnoremap <C-F>t :CtrlSFToggle<CR>
+
+" Configuration for buftabs
+:let g:buftabs_only_basename=1
+:let g:buftabs_in_statusline=1
+:let g:buftabs_active_highlight_group="Visual"
+:let g:buftabs_marker_start = " "
+:let g:buftabs_marker_end = " "
+:let g:buftabs_marker_modified = "!"
+
+noremap <C-h> :bprev<CR>
+noremap <C-l> :bnext<CR>
 
 " Configuration for PyRepl (modified from repo readme).
 " Note that localleader is typically `\`
