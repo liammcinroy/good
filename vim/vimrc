@@ -29,9 +29,11 @@ set number
 
 call plug#begin()
 Plug 'preservim/nerdtree'
-Plug 'kien/ctrlp.vim'
 Plug 'dyng/ctrlsf.vim'
-Plug 'zevv/buftabs'
+Plug 'vim-ctrlspace/vim-ctrlspace'
+" don't use with ctrlspace...
+" Plug 'kien/ctrlp.vim'
+" Plug 'zevv/buftabs'
 
 Plug '07734willy/PyRepl'
 " Optional, if using scala
@@ -57,6 +59,16 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 
 filetype plugin on
+
+" Configuration for ctrlspace
+set nocompatible
+set hidden
+set encoding=utf-8
+" override ctrlp, maybe remove
+nnoremap <silent><C-p> :CtrlSpace O<CR>
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
 
 " Configuration for NERDTree
 
