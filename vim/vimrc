@@ -92,6 +92,7 @@ set laststatus=2
 :let g:buftabs_marker_end = " "
 :let g:buftabs_marker_modified = "!"
 
+" Navigate buffers easily, doesn't need buftabs
 noremap <C-h> :bprev<CR>
 noremap <C-l> :bnext<CR>
 

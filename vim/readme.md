@@ -17,10 +17,16 @@
 - Ctrl-d, Ctrl-u: page up/down
 
 - visually select and `:terminal <command>` will run that range as stdin to
-  `<command>`, displaying it in a new buffer.
+  `<command>`, displaying it in a new pane.
 
 - use `Ctrl-o` to return to previous position, `Ctrl-i` to go to the next (but
-these are all in the same buffer...).
+  these are all in the same pane...).
+
+- `bd` to remove a buffer from the list, `badd` to add it without opening a new
+  pane.
+
+  - note that `bd` doesn't get rid of the memory of the buffer; use
+    `bw` for that. 
 
 #### nerdtree, ctrlp, and custom commands
 
@@ -54,9 +60,11 @@ these are all in the same buffer...).
 
     - l: list tabs, navigate with j, k
 
-    - b: list bookmarks, create workspaces, etc
+    - b: list bookmarks, create workspaces (use a), etc
 
     - o: open file opener (doesn't search...)
+
+  - `:help ctrlspace` will help you a lot
 
 - visually select and `:Run <command>` will run that range as stdin to
   `<command>`, displaying it in a scratch (?) buffer.

@@ -9,9 +9,17 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 - `preservim/nerdtree`: tree View
 
+- `dyng/ctrlsf.vim`: Ctrl-f (f) to search files
+
+  - need `brew install ack`
+
+- `vim-ctrlspace/vim-ctrlspace`: workspace / buffer manager
+
+  - don't use with `ctrlp` and `buftabs`, but still useful with
+
 - `kien/ctrlp.vim`: Ctrl-p search file names
 
-- 'dyng/ctrlsf.vim': Ctrl-f (f) to search files
+- `zevv/buftabs`: displays buffers in a tab line sort of style
 
 - `07734willy/PyRepl`: A way to quickly evaluate python scripts, and show
 output inline.
