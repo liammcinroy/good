@@ -56,19 +56,28 @@
 
     - tab / enter: select
 
+    - Ctrl-m: change to navigate
+
     - Ctrl-w: clear search
 
   - Ctrl-space: open menu
 
     - normal just navigate buffers within tab; navigate with j, k
 
+      - use / to enter search mode, Ctrl-m to go back to navigate
+
     - c on buffer to close it (`bd` basically), w to do `bw` basically.
 
     - l: list tabs, navigate with j, k
 
+      - m to rename tab for search
+
     - b: list bookmarks, create bookmark (use A)
 
     - w: list workspaces, s to toggle save mode, enter to reload/save one
+
+      - delete with d, create new blank with N. save old, save old as new,
+        create blank, then overwrite new
 
     - o: open file opener (doesn't search...); r to reindex files
 
