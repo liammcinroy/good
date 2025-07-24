@@ -44,6 +44,27 @@ coursier bootstrap \
 
 - For typescript server, then `:CocInstall coc-tsserver`
 
+- For ansible, then `:CocInstall @yaegassy/coc-ansible`. Make sure to have
+  `Plug 'pearofducks/ansible-vim'` and the config:
+
+  ```
+  " Configuration for ansible-vim
+  au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+
+  " Configuration for @yaegassy/coc-ansible
+  let g:coc_filetype_map = {
+        \ 'yaml.ansible': 'ansible',
+        \ }
+  ```
+
+- For terraform lsp, then 
+
+  ```bash
+  brew install hashicorp/tap/terraform-ls
+  ```
+
+  then add the `coc-settings.json` entry.
+
 ### errors
 
 - If you get weird error messages, it's probably some combination of an old

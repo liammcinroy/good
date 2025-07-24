@@ -28,6 +28,8 @@
   - note that `bd` doesn't get rid of the memory of the buffer; use
     `bw` for that. 
 
+- `m` followed by letter to put mark, `'` followed by marked letter to go to it
+
 #### nerdtree, ctrlp, and custom commands
 
 - Ctrl-e: toggle NERDTree
@@ -52,17 +54,28 @@
 
   - Ctrl-p: search files, no navigation...
 
-    - tab: select
+    - tab / enter: select
 
     - Ctrl-w: clear search
 
   - Ctrl-space: open menu
 
+    - normal just navigate buffers within tab; navigate with j, k
+
+    - c on buffer to close it (`bd` basically), w to do `bw` basically.
+
     - l: list tabs, navigate with j, k
 
-    - b: list bookmarks, create workspaces (use a), etc
+    - b: list bookmarks, create bookmark (use A)
 
-    - o: open file opener (doesn't search...)
+    - w: list workspaces, s to toggle save mode, enter to reload/save one
+
+    - o: open file opener (doesn't search...); r to reindex files
+
+    - once workspace is saved, then saved on exit, so use `:qa`!
+
+    - helpful to `git config --global core.excludesfile ~/.gitignore` and
+      add both `*.cs_files`, `*.cs_workspaces`.
 
   - `:help ctrlspace` will help you a lot
 

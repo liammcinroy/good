@@ -53,6 +53,12 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Optional, if `:CocInstall coc-metals` is annoying
 " Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 
+" Optional, if `:CocInstall @yaegassy/coc-ansible` is annoying
+" Plug 'yaegassy/coc-ansible', {'do': 'yarn install --frozen-lockfile'}
+
+" Needed for @yaegassy/coc-ansible
+Plug 'pearofducks/ansible-vim'
+
 " Also consider running
 " `:CocInstall coc-clangd`
 " `:CocInstall coc-rust-analyzer`
@@ -118,6 +124,14 @@ command Pyc :PyReplStrip output
 
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
+
+" Configuration for ansible-vim
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+
+" Configuration for @yaegassy/coc-ansible
+let g:coc_filetype_map = {
+      \ 'yaml.ansible': 'ansible',
+      \ }
 
 " Coc uses byte offsets, so need to set this so that it doesn't blow up.
 set encoding=utf-8
